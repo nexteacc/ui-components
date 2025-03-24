@@ -9,9 +9,9 @@ function App() {
   return (
     <div className="container mx-auto py-10 px-4 md:px-6">
       <header className="text-center mb-12">
-        <h1 className="text-3xl md:text-4xl font-bold mb-4">中文 UI 组件示例</h1>
+        <h1 className="text-3xl md:text-4xl font-bold mb-4">UI 组件示例</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          这个库展示了一系列中文用户界面组件的最佳实践，每个例子都包含"正确"和"错误"的设计方式，并提供了可复制的HTML和CSS代码。
+          这个库展示了一系列心理学效应的组件
         </p>
       </header>
 
