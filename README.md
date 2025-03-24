@@ -14,4 +14,4 @@ UI商城是一个在线平台，专注于提供高质量的UI组件。这些组�
 
 ## 联系我们
 如有任何问题或建议，请通过以下方式联系我们：
-- 邮箱：nexteacc@uimall.com
+- 邮箱：nexteacc@gmail.com
