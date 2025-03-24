@@ -1,50 +1,17 @@
-# React + TypeScript + Vite
+# UI商城
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## 项目简介
+UI商城是一个在线平台，专注于提供高质量的UI组件。这些组件的设计基于心理学原理，旨在提升用户体验和交互效果。开发者可以在这里购买和下载各种组件，以便快速集成到他们的项目中。
 
-Currently, two official plugins are available:
+## 功能特点
+- **心理学驱动设计**：每个组件的设计都基于心理学研究，以优化用户交互和视觉体验。
+- **多种心理学的组件应用**。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 使用说明
+1. 浏览组件库，选择需要的组件。
+2. 添加到购物车并完成购买。
+3. 下载组件并按照文档进行集成。
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## 联系我们
+如有任何问题或建议，请通过以下方式联系我们：
+- 邮箱：nexteacc@uimall.com
