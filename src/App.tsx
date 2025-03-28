@@ -21,6 +21,9 @@ import { ScarcityProductExample, ScarcityProductCode } from './components/ui-exa
 import { ReviewFilterExample, ReviewFilterCode } from './components/ui-examples/review-filter-component';
 import { AuthorityExample, AuthorityCode } from './components/ui-examples/authority-component';
 import { FootInDoorExample, FootInDoorCode } from './components/ui-examples/foot-in-door-component';
+import { RestraintBiasExample, RestraintBiasCode } from './components/ui-examples/restraint-bias-component';
+import { FluencyHeuristicExample, FluencyHeuristicCode } from './components/ui-examples/fluency-heuristic-component';
+
 
 const categories = [
   {
@@ -99,14 +102,6 @@ const categories = [
     icon: '📊',
     components: [
       {
-        title: "框架效应 Framing Effect",
-        description: "通过不同的信息呈现方式来影响用户决策。例如，将'95%成功率'改为'5%失败率'来影响用户感知。",
-        id: "form-field",
-        html: FormFieldCode.html,
-        css: FormFieldCode.css,
-        example: <FormFieldExample />
-      },
-      {
         title: "负面偏差 Negativity Bias",
         description: "用户更容易注意到负面信息，因此需要谨慎处理错误提示和警告信息。",
         id: "error-message",
@@ -152,7 +147,15 @@ const categories = [
         html: PremiumUpgradeCode.html,
         css: PremiumUpgradeCode.css,
         example: <PremiumUpgradeExample />
-      }
+      },
+      {
+        title: "自制偏差 Restraint Bias",
+        description: "人们经常会高估自己控制冲动行为的能力。我们都认为'标题党'属于旁门左道，但我们还是陷入其中，不是吗？",
+        id: "restraint-bias",
+        html: RestraintBiasCode.html,
+        css: RestraintBiasCode.css,
+        example: <RestraintBiasExample />
+      },
     ]
   },
   {
@@ -200,31 +203,31 @@ const categories = [
         example: <SpamFilterExample />
       },
       {
+      title: "流畅性启发式 Fluency Heuristic",
+      description: "我们认为那些处理速度更快、更流畅、更顺利的事物具有更高的价值。有时不合逻辑的论点在沟通良好的情况下（由有权威和经验的人提出）也可能会赢得胜利。",
+      id: "fluency-heuristic",
+      html: FluencyHeuristicCode.html,
+      css: FluencyHeuristicCode.css,
+      example: <FluencyHeuristicExample />
+    },
+      {
         title: "新闻订阅 Newsletter Signup",
-        description: "通过简化订阅流程和提供明确的价值主张来吸引用户订阅。",
+        description: "在讲产品故事时，请使用个体案例，而非一般性陈述。提供明确的价值主张来吸引用户订阅。",
         id: "newsletter-signup",
         html: NewsletterSignupCode.html,
         css: NewsletterSignupCode.css,
         example: <NewsletterSignupExample />
       },
       {
-        title: "搜索输入 Search Input",
-        description: "通过智能提示和快速响应来优化搜索体验。",
-        id: "search-input",
-        html: SearchInputCode.html,
-        css: SearchInputCode.css,
-        example: <SearchInputExample />
-      },
-      {
-        title: "联系人列表 Contact List",
-        description: "通过清晰的布局和交互设计来优化联系人管理体验。",
+        title: "感知价值偏差 Perceived Value Bias",
+        description: "设计对于产品的成功比你想象的更为重要，多余的空间，错误的边框颜色和未对齐的文字，都会影响转化率",
         id: "contact-list",
         html: ContactListCode.html,
         css: ContactListCode.css,
         example: <ContactListExample />
       },
       {
-        title: "XX提示 Feishu Tips",
+        title: "XX提示 Tips",
         description: "通过友好的提示和引导来优化企业通讯工具的使用体验。",
         id: "feishu-tips",
         html: FeishuTipsCode.html,
@@ -276,7 +279,7 @@ function App() {
       <header className="text-center mb-12">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">UI 组件示例</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          这个库展示了一系列心理学效应的组件
+          这里展示了一系列心理学效应的组件，来源飞书产品设计团队的分享。
         </p>
       </header>
 
@@ -326,7 +329,7 @@ function App() {
 
       <footer className="mt-20 text-center py-6 border-t">
         <p className="text-gray-600">
-          © {new Date().getFullYear()} UI组件展示 | 由Same.new AI助手创建
+          © {new Date().getFullYear()}
         </p>
       </footer>
     </div>

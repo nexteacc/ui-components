@@ -2,20 +2,22 @@ import React from 'react';
 
 export const ContactListBad = () => {
   return (
-    <div className="min-h-[300px] p-6 bg-white rounded-xl border border-gray-200">
-      <h2 className="text-xl font-bold mb-4">联系人</h2>
-      <div className="space-y-4">
-        <div className="p-3 border rounded-lg">
-          <p className="font-medium">王南南</p>
-          <p className="text-sm text-gray-500">部门 Leader</p>
+    <div className="min-h-[250px] flex flex-col bg-white rounded-xl border border-gray-200">
+      <div className="p-4 bg-gray-100 border-b">
+        <h2 className="text-xl font-bold">联系人</h2>
+      </div>
+      <div className="divide-y">
+        <div className="p-4">
+          <h3 className="font-bold">王南南</h3>
+          <p className="text-gray-600">部门 Leader</p>
         </div>
-        <div className="p-3 border rounded-lg">
-          <p className="font-medium">雪莉</p>
-          <p className="text-sm text-gray-500">HR</p>
+        <div className="p-4">
+          <h3 className="font-bold">雪莉</h3>
+          <p className="text-gray-600">HR</p>
         </div>
-        <div className="p-3 border rounded-lg">
-          <p className="font-medium">刘小宇</p>
-          <p className="text-sm text-gray-500">技术</p>
+        <div className="p-4">
+          <h3 className="font-bold">刘小宇</h3>
+          <p className="text-gray-600">技术</p>
         </div>
       </div>
     </div>
@@ -24,20 +26,22 @@ export const ContactListBad = () => {
 
 export const ContactListGood = () => {
   return (
-    <div className="min-h-[300px] p-6 bg-white rounded-xl border border-gray-200">
-      <h2 className="text-xl font-bold mb-4">联系人</h2>
-      <div className="space-y-4">
-        <div className="p-3 border rounded-lg">
-          <p className="font-medium">王南南</p>
-          <p className="text-sm text-gray-600">部门 Leader</p>
+    <div className="min-h-[250px] flex flex-col bg-white rounded-xl border border-gray-200">
+      <div className="p-4 bg-gray-50 border-b">
+        <h2 className="text-xl font-bold">联系人</h2>
+      </div>
+      <div className="divide-y">
+        <div className="p-4">
+          <h3 className="font-bold text-gray-700">王南南</h3>
+          <p className="text-gray-500 text-sm">部门 Leader</p>
         </div>
-        <div className="p-3 border rounded-lg">
-          <p className="font-medium">雪莉</p>
-          <p className="text-sm text-gray-600">HR</p>
+        <div className="p-4">
+          <h3 className="font-bold text-gray-700">雪莉</h3>
+          <p className="text-gray-500 text-sm">HR</p>
         </div>
-        <div className="p-3 border rounded-lg">
-          <p className="font-medium">刘小宇</p>
-          <p className="text-sm text-gray-600">技术</p>
+        <div className="p-4">
+          <h3 className="font-bold text-gray-700">刘小宇</h3>
+          <p className="text-gray-500 text-sm">技术</p>
         </div>
       </div>
     </div>
