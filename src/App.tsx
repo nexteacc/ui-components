@@ -261,7 +261,7 @@ function App() {
     setActiveTab(id);
     const element = document.getElementById(id);
     if (element) {
-      const offset = 100; // 根据导航栏高度调整
+      const offset = 100; 
       const bodyRect = document.body.getBoundingClientRect().top;
       const elementRect = element.getBoundingClientRect().top;
       const elementPosition = elementRect - bodyRect;
@@ -279,7 +279,7 @@ function App() {
       <header className="text-center mb-12">
         <h1 className="text-3xl md:text-4xl font-bold mb-4">UI 组件示例</h1>
         <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-          这里展示了一系列心理学效应的组件，来源飞书产品设计团队的分享。
+          这里展示了一系列心理学效应的组件，来源 <a href="https://s75w5y7vut.feishu.cn/docs/doccn3BatnScBJe7wD7K3S5poFf" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">飞书产品设计团队的分享</a>。
         </p>
       </header>
 
