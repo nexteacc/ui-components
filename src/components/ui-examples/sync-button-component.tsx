@@ -64,7 +64,7 @@ export const SyncButtonCode = {
     <div class="form-field form-field-short"></div>
   </div>
   <button class="sync-button">
-    同步到飞书
+    同步到XX
   </button>
 </div>
 
@@ -86,7 +86,7 @@ export const SyncButtonCode = {
         <path d="M16 16v6"></path>
         <path d="M8 22v-6"></path>
       </svg>
-      同步到飞书
+      同步到XX
     </button>
     <div class="privacy-notice">
       <span class="info-icon">!</span>
