@@ -4,7 +4,7 @@ export const AutoLoginBad = () => {
   return (
     <div className="min-h-[300px] flex flex-col justify-between p-6 bg-white rounded-xl border border-gray-200">
       <div>
-        <h2 className="text-xl font-bold mb-4">登录飞书</h2>
+        <h2 className="text-xl font-bold mb-4">登录XX</h2>
         <div className="space-y-4">
           <input
             type="text"
@@ -24,7 +24,7 @@ export const AutoLoginGood = () => {
   return (
     <div className="min-h-[300px] flex flex-col justify-between p-6 bg-white rounded-xl border border-gray-200">
       <div>
-        <h2 className="text-xl font-bold mb-4">登录飞书</h2>
+        <h2 className="text-xl font-bold mb-4">登录XX</h2>
         <div className="space-y-4">
           <input
             type="text"
@@ -66,14 +66,14 @@ export const AutoLoginExample = () => {
 export const AutoLoginCode = {
   html: `<!-- Don't Example -->
 <div class="login-form">
-  <h2>登录飞书</h2>
+  <h2>登录XX</h2>
   <input type="text" placeholder="手机号" />
   <button>下一步</button>
 </div>
 
 <!-- Do Example -->
 <div class="login-form">
-  <h2>登录飞书</h2>
+  <h2>登录XX</h2>
   <input type="text" placeholder="手机号" />
   <label>
     <input type="checkbox" />

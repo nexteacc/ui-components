@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { ExampleWrapper } from './components/ui-examples/example-wrapper';
 import { PriceComponentExample, PriceComponentCode } from './components/ui-examples/price-component';
 import { ProductCardExample, ProductCardCode } from './components/ui-examples/product-card-component';
@@ -10,7 +10,6 @@ import { PremiumUpgradeExample, PremiumUpgradeCode } from './components/ui-examp
 import { SpamFilterExample, SpamFilterCode } from './components/ui-examples/spam-filter-component';
 import { SignupBonusExample, SignupBonusCode } from './components/ui-examples/signup-bonus-component';
 import { NewsletterSignupExample, NewsletterSignupCode } from './components/ui-examples/newsletter-signup-component';
-import { ExcelLearningExample, ExcelLearningCode } from './components/ui-examples/excel-learning-component';
 import { SearchInputExample, SearchInputCode } from './components/ui-examples/search-input-component';
 import { TimeLimitedOfferExample, TimeLimitedOfferCode } from './components/ui-examples/time-limited-offer-component';
 import { FormFieldExample, FormFieldCode } from './components/ui-examples/form-field-component';
@@ -19,12 +18,259 @@ import { SecurePaymentExample, SecurePaymentCode } from './components/ui-example
 import { FeishuTipsExample, FeishuTipsCode } from './components/ui-examples/feishu-tips-component';
 import { OptionListExample, OptionListCode } from './components/ui-examples/option-list-component';
 import { ScarcityProductExample, ScarcityProductCode } from './components/ui-examples/scarcity-product-component';
-import { AutoLoginExample, AutoLoginCode } from './components/ui-examples/auto-login-component';
 import { ReviewFilterExample, ReviewFilterCode } from './components/ui-examples/review-filter-component';
 import { AuthorityExample, AuthorityCode } from './components/ui-examples/authority-component';
 import { FootInDoorExample, FootInDoorCode } from './components/ui-examples/foot-in-door-component';
 
+const categories = [
+  {
+    id: 'price-promotion',
+    title: '价格与促销策略',
+    icon: '💰',
+    components: [
+      {
+        title: "锚定效应 Anchoring Effect",
+        description: "通常被利用在消费场景中的认知偏差，通过前后对比来放大优惠感知，进而促进用户做出有利于我们的决策。",
+        id: "price-component",
+        html: PriceComponentCode.html,
+        css: PriceComponentCode.css,
+        example: <PriceComponentExample />
+      },
+      {
+        title: "诱饵效应 Decoy Effect",
+        description: "引入第三个选项来加强旧选项的吸引力。假设有产品 A 和 B，以下是顾客可以选择的选项：(1) ¥100 - A (2) ¥300 - B (3) ¥300 - A + B。在这个情景，(2) 是'诱饵'，用来引导顾客选择'目标选项' (3)。",
+        id: "product-options",
+        html: ProductOptionsCode.html,
+        css: ProductOptionsCode.css,
+        example: <ProductOptionsExample />
+      },
+      {
+        title: "稀缺效应 Scarcity Effect",
+        description: "通过展示库存紧张或限时优惠来制造紧迫感，促使用户更快做出购买决策。",
+        id: "scarcity-product",
+        html: ScarcityProductCode.html,
+        css: ScarcityProductCode.css,
+        example: <ScarcityProductExample />
+      },
+      {
+        title: "时间限制优惠 Time-Limited Offer",
+        description: "通过倒计时和限时优惠来促使用户立即行动，避免错过机会。",
+        id: "time-limited-offer",
+        html: TimeLimitedOfferCode.html,
+        css: TimeLimitedOfferCode.css,
+        example: <TimeLimitedOfferExample />
+      }
+    ]
+  },
+  {
+    id: 'decision-guide',
+    title: '用户决策引导',
+    icon: '🧭',
+    components: [
+      {
+        title: "从众效应 Bandwagon Effect",
+        description: "我们在设计中可以营造出一种群体选择的效果来吸引更多的用户，通过展示购买人数和滚动播放购买信息来体现出该商品的热门，让正在犹豫的用户「随大流」下单购买。",
+        id: "product-card",
+        html: ProductCardCode.html,
+        css: ProductCardCode.css,
+        example: <ProductCardExample />
+      },
+      {
+        title: "得寸进尺法 Foot-in-the-Door Technique",
+        description: "先让用户完成简单任务（如注册），再引导完成复杂任务（如填写详细信息）。",
+        id: "foot-in-door",
+        html: FootInDoorCode.html,
+        css: FootInDoorCode.css,
+        example: <FootInDoorExample />
+      },
+      {
+        title: "选择支持偏差 Choice-Supportive Bias",
+        description: "在用户做出购买决定并成功完成交易之后，是用户分享产品（或添加评论）的绝佳时机：显示肯定的信息，并祝贺他们达成了这一步骤以激励用户。",
+        id: "notification",
+        html: NotificationCode.html,
+        css: NotificationCode.css,
+        example: <NotificationExample />
+      }
+    ]
+  },
+  {
+    id: 'information-presentation',
+    title: '信息呈现与框架',
+    icon: '📊',
+    components: [
+      {
+        title: "框架效应 Framing Effect",
+        description: "通过不同的信息呈现方式来影响用户决策。例如，将'95%成功率'改为'5%失败率'来影响用户感知。",
+        id: "form-field",
+        html: FormFieldCode.html,
+        css: FormFieldCode.css,
+        example: <FormFieldExample />
+      },
+      {
+        title: "负面偏差 Negativity Bias",
+        description: "用户更容易注意到负面信息，因此需要谨慎处理错误提示和警告信息。",
+        id: "error-message",
+        html: ErrorMessageCode.html,
+        css: ErrorMessageCode.css,
+        example: <ErrorMessageExample />
+      },
+      {
+        title: "权威偏见 Authority Bias",
+        description: "通过展示专家推荐或认证标志来增强用户信任。",
+        id: "authority",
+        html: AuthorityCode.html,
+        css: AuthorityCode.css,
+        example: <AuthorityExample />
+      }
+    ]
+  },
+  {
+    id: 'user-cognition',
+    title: '用户认知与行为',
+    icon: '🧠',
+    components: [
+      {
+        title: "知识的诅咒 Curse of Knowledge",
+        description: "当我们是某个领域的专家时，会不知不觉假设其他人和我们具有相同的理解能力，尤其是对于专业术语的使用。考虑一下大多数用户，他们的技术水平可能不如你想象的那样，并且对你熟悉的事物也不太熟悉。",
+        id: "error-message",
+        html: ErrorMessageCode.html,
+        css: ErrorMessageCode.css,
+        example: <ErrorMessageExample />
+      },
+      {
+        title: "不明确性效应 Ambiguity Effect",
+        description: "我们倾向于避免未知，决策时避开资讯不足的选项，通过添加明确的细节来最大程度地减少歧义，从而提高转化率。CTA 按钮应在其旁边包含信息性标签，以清除确定性。",
+        id: "sync-button",
+        html: SyncButtonCode.html,
+        css: SyncButtonCode.css,
+        example: <SyncButtonExample />
+      },
+      {
+        title: "损失趋避 Loss Aversion",
+        description: "用户更倾向于避免损失而非获得收益，因此可以通过强调用户可能错过的机会来促使用户行动。",
+        id: "premium-upgrade",
+        html: PremiumUpgradeCode.html,
+        css: PremiumUpgradeCode.css,
+        example: <PremiumUpgradeExample />
+      }
+    ]
+  },
+  {
+    id: 'user-experience',
+    title: '用户体验优化',
+    icon: '✨',
+    components: [
+      {
+        title: "单纯接触效应 Mere Exposure Effect",
+        description: "人们会单纯因为自己熟悉某个事物而产生好感。它表明某一外在刺激，仅仅因为呈现的次数越频繁（使个体能够接触到该刺激的机会越多），个体对该刺激将越喜欢。",
+        id: "search-input",
+        html: SearchInputCode.html,
+        css: SearchInputCode.css,
+        example: <SearchInputExample />
+      },
+      {
+        title: "感知价值偏差 Perceived Value Bias",
+        description: "通过精美的设计和动画提升产品质感，增强用户对产品价值的感知。",
+        id: "secure-payment",
+        html: SecurePaymentCode.html,
+        css: SecurePaymentCode.css,
+        example: <SecurePaymentExample />
+      },
+      {
+        title: "零风险偏差 Zero-Risk Bias",
+        description: "通过提供无风险试用或退款保证来降低用户决策门槛。",
+        id: "signup-bonus",
+        html: SignupBonusCode.html,
+        css: SignupBonusCode.css,
+        example: <SignupBonusExample />
+      }
+    ]
+  },
+  {
+    id: 'others',
+    title: '其他',
+    icon: '📦',
+    components: [
+      {
+        title: "框架效应 Framing Effect",
+        description: "通过不同的信息呈现方式来影响用户决策。例如，将'4%垃圾邮件'改为'96%无垃圾邮件'来影响用户感知。",
+        id: "spam-filter",
+        html: SpamFilterCode.html,
+        css: SpamFilterCode.css,
+        example: <SpamFilterExample />
+      },
+      {
+        title: "新闻订阅 Newsletter Signup",
+        description: "通过简化订阅流程和提供明确的价值主张来吸引用户订阅。",
+        id: "newsletter-signup",
+        html: NewsletterSignupCode.html,
+        css: NewsletterSignupCode.css,
+        example: <NewsletterSignupExample />
+      },
+      {
+        title: "搜索输入 Search Input",
+        description: "通过智能提示和快速响应来优化搜索体验。",
+        id: "search-input",
+        html: SearchInputCode.html,
+        css: SearchInputCode.css,
+        example: <SearchInputExample />
+      },
+      {
+        title: "联系人列表 Contact List",
+        description: "通过清晰的布局和交互设计来优化联系人管理体验。",
+        id: "contact-list",
+        html: ContactListCode.html,
+        css: ContactListCode.css,
+        example: <ContactListExample />
+      },
+      {
+        title: "XX提示 Feishu Tips",
+        description: "通过友好的提示和引导来优化企业通讯工具的使用体验。",
+        id: "feishu-tips",
+        html: FeishuTipsCode.html,
+        css: FeishuTipsCode.css,
+        example: <FeishuTipsExample />
+      },
+      {
+        title: "选项列表 Option List",
+        description: "通过清晰的布局和交互设计来优化选项选择体验。",
+        id: "option-list",
+        html: OptionListCode.html,
+        css: OptionListCode.css,
+        example: <OptionListExample />
+      },
+      {
+        title: "评论过滤 Review Filter",
+        description: "通过智能过滤和排序来优化评论浏览体验。",
+        id: "review-filter",
+        html: ReviewFilterCode.html,
+        css: ReviewFilterCode.css,
+        example: <ReviewFilterExample />
+      }
+    ]
+  }
+];
+
 function App() {
+  const [activeTab, setActiveTab] = useState(categories[0].id);
+
+  const handleTabClick = (id: string) => {
+    setActiveTab(id);
+    const element = document.getElementById(id);
+    if (element) {
+      const offset = 100; // 根据导航栏高度调整
+      const bodyRect = document.body.getBoundingClientRect().top;
+      const elementRect = element.getBoundingClientRect().top;
+      const elementPosition = elementRect - bodyRect;
+      const offsetPosition = elementPosition - offset;
+
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
+    }
+  };
+
   return (
     <div className="container mx-auto py-10 px-4 md:px-6">
       <header className="text-center mb-12">
@@ -34,238 +280,48 @@ function App() {
         </p>
       </header>
 
-      <main className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <ExampleWrapper
-          title="锚定效应 Anchoring Effect"
-          description="通常被利用在消费场景中的认知偏差，通过前后对比来放大优惠感知，进而促进用户做出有利于我们的决策。"
-          id="price-component"
-          html={PriceComponentCode.html}
-          css={PriceComponentCode.css}
-        >
-          <PriceComponentExample />
-        </ExampleWrapper>
+      {/* 修改为sticky定位，但不固定在顶部 */}
+      <nav className="sticky top-20 bg-white z-10 py-4">
+        <div className="flex justify-center gap-4 overflow-x-auto">
+          {categories.map(category => (
+            <button
+              key={category.id}
+              onClick={() => handleTabClick(category.id)}
+              className={`px-4 py-2 rounded-full text-sm font-medium transition-colors ${
+                activeTab === category.id
+                  ? 'bg-blue-600 text-white'
+                  : 'bg-gray-100 hover:bg-gray-200'
+              }`}
+            >
+              {category.icon} {category.title}
+            </button>
+          ))}
+        </div>
+      </nav>
 
-        <ExampleWrapper
-          title="从众效应 Bandwagon Effect"
-          description="我们在设计中可以营造出一种群体选择的效果来吸引更多的用户，通过展示购买人数和滚动播放购买信息来体现出该商品的热门，让正在犹豫的用户「随大流」下单购买。"
-          id="product-card"
-          html={ProductCardCode.html}
-          css={ProductCardCode.css}
-        >
-          <ProductCardExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="选择支持偏差 Choice-Supportive Bias"
-          description="在用户做出购买决定并成功完成交易之后，是用户分享产品（或添加评论）的绝佳时机：显示肯定的信息，并祝贺他们达成了这一步骤以激励用户。"
-          id="notification"
-          html={NotificationCode.html}
-          css={NotificationCode.css}
-        >
-          <NotificationExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="不明确性效应 Ambiguity Effect"
-          description="我们倾向于避免未知，决策时避开资讯不足的选项，通过添加明确的细节来最大程度地减少歧义，从而提高转化率。CTA 按钮应在其旁边包含信息性标签，以清除确定性。"
-          id="sync-button"
-          html={SyncButtonCode.html}
-          css={SyncButtonCode.css}
-        >
-          <SyncButtonExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="知识的诅咒 Curse of Knowledge"
-          description="当我们是某个领域的专家时，会不知不觉假设其他人和我们具有相同的理解能力，尤其是对于专业术语的使用。考虑一下大多数用户，他们的技术水平可能不如你想象的那样，并且对你熟悉的事物也不太熟悉。"
-          id="error-message"
-          html={ErrorMessageCode.html}
-          css={ErrorMessageCode.css}
-        >
-          <ErrorMessageExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="诱饵效应 Decoy Effect"
-          description="引入第三个选项来加强旧选项的吸引力。假设有产品 A 和 B，以下是顾客可以选择的选项：(1) ¥100 - A (2) ¥300 - B (3) ¥300 - A + B。在这个情景，(2) 是'诱饵'，用来引导顾客选择'目标选项' (3)。"
-          id="product-options"
-          html={ProductOptionsCode.html}
-          css={ProductOptionsCode.css}
-        >
-          <ProductOptionsExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="禀赋效应 Endowment Effect"
-          description="禀赋效应是损失规避（loss aversion）的一种表现形式，免费试用是禀赋效应的最常见用法。一旦用户开始使用某种产品并投入了一段时间，那么在试用期结束束时，他们很难放手而停止使用。当用户准备离开时，他们会觉得自己即将失去很多美好的事物。"
-          id="premium-upgrade"
-          html={PremiumUpgradeCode.html}
-          css={PremiumUpgradeCode.css}
-        >
-          <PremiumUpgradeExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="框架效应 Framing Effect"
-          description="框架效应的意义是，面对同一个问题，在使用不同的描述后，人们会选择听之下较有利或顺耳的描述作为方案。在大多数情况下，正向表述（例如玻璃杯已满一半）的转换率会更高。"
-          id="spam-filter"
-          html={SpamFilterCode.html}
-          css={SpamFilterCode.css}
-        >
-          <SpamFilterExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="当下偏差 Current Moment Bias"
-          description="又称现时偏差，人们更倾向于获取即时收益，而非未来的更大收益。为用户的立即购买提供小折扣（或免费送货），而非承诺他们在将来购买时提供更大的折扣。"
-          id="signup-bonus"
-          html={SignupBonusCode.html}
-          css={SignupBonusCode.css}
-        >
-          <SignupBonusExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="可辨识受害者效应 Identifiable Victim Effect"
-          description="我们倾向于同情一个特定的人而不是匿名的某一个人。在讲产品故事时，请使用个体案例，而非一般性陈述。"
-          id="newsletter-signup"
-          html={NewsletterSignupCode.html}
-          css={NewsletterSignupCode.css}
-        >
-          <NewsletterSignupExample />
-        </ExampleWrapper>
-
-
-
-        <ExampleWrapper
-          title="负面偏差 Negativity Bias"
-          description="相比于中性或者积极的事物，具有负面影响的事物对人们的心理影响更大。"
-          id="excel-learning"
-          html={ExcelLearningCode.html}
-          css={ExcelLearningCode.css}
-        >
-          <ExcelLearningExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="单纯接触效应 Mere Exposure Effect"
-          description="人们会单纯因为自己熟悉某个事物而产生好感。它表明某一外在刺激，仅仅因为呈现的次数越频繁（使个体能够接触到该刺激的机会越多），个体对该刺激将越喜欢。"
-          id="search-input"
-          html={SearchInputCode.html}
-          css={SearchInputCode.css}
-        >
-          <SearchInputExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="损失趋避 Loss Aversion"
-          description="指人们面对同样数量的收益和损失时，认为损失更加令他们难以忍受。损失带来的负效用为收益正效用的2至2.5倍。"
-          id="time-limited-offer"
-          html={TimeLimitedOfferCode.html}
-          css={TimeLimitedOfferCode.css}
-        >
-          <TimeLimitedOfferExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="忽略可能性 Neglect of Probability"
-          description="当我们承受压力时，我们没有想到风险发生的可能性。结果，较小的风险可能会被高估或被忽略。在转换漏斗中，最小的不确定性可能导致用户对产品的不信任并停止使用。"
-          id="form-field"
-          html={FormFieldCode.html}
-          css={FormFieldCode.css}
-        >
-          <FormFieldExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="感知价值偏差 Perceived Value Bias"
-          description="我们根据产品的外观或服务方式来感知其价值。正如人们所说：全部在包装中！"
-          id="contact-list"
-          html={ContactListCode.html}
-          css={ContactListCode.css}
-        >
-          <ContactListExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="零风险偏差 Zero-Risk Bias"
-          description="我们喜欢确定性，即使它适得其反。在有其他方案可以降低整个风险的情形下，仍倾向于完全消除某一项风险的偏见。"
-          id="secure-payment"
-          html={SecurePaymentCode.html}
-          css={SecurePaymentCode.css}
-        >
-          <SecurePaymentExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-          title="自制偏差 Restraint Bias"
-          description="人们经常会高估自己控制冲动行为的能力。"
-          id="feishu-tips"
-          html={FeishuTipsCode.html}
-          css={FeishuTipsCode.css}
-        >
-          <FeishuTipsExample />
-        </ExampleWrapper>
-
-        <ExampleWrapper
-        title="分析瘫痪 Analysis Paralysis"
-        description="又称选择超载。当出现太多选择时，我们的大脑就会瘫痪，很难进行选择。"
-        id="option-list"
-        html={OptionListCode.html}
-        css={OptionListCode.css}
-      >
-        <OptionListExample />
-      </ExampleWrapper>
-
-      <ExampleWrapper
-        title="稀缺效应 Scarcity Effect"
-        description="我们将稀缺物品的价值提高，将高可用性物品的价值降低。害怕错过（FOMO: fear of missing out）使我们更容易受到诱惑和冲动，并促使我们做出轻率的决定。"
-        id="scarcity-product"
-        html={ScarcityProductCode.html}
-        css={ScarcityProductCode.css}
-      >
-        <ScarcityProductExample />
-      </ExampleWrapper>
-
-      <ExampleWrapper
-        title="流畅性启发 Fluency Heuristic"
-        description="我们认为那些处理速度更快、更流畅、更顺利的事物具有更高的价值。有时不合逻辑的论点在沟通良好的情况下（由有权威和经验的人提出）也可能会赢得胜利。"
-        id="auto-login"
-        html={AutoLoginCode.html}
-        css={AutoLoginCode.css}
-      >
-        <AutoLoginExample />
-      </ExampleWrapper>
-
-      <ExampleWrapper
-        title="群内偏差 Ingroup Bias"
-        description="群内偏差常被用来引导用户决策，它是指人们会在认知上倾向于自己所属的群体。在体验设计中利用群内偏差的关键点在于打造群体归属感，借由小群体的力量影响用户的决策。"
-        id="review-filter"
-        html={ReviewFilterCode.html}
-        css={ReviewFilterCode.css}
-      >
-        <ReviewFilterExample />
-      </ExampleWrapper>
-      <ExampleWrapper
-        title="权威偏见 Authority Bias"
-        description="我们认为权威人士给出的建议准确性更高，并且更容易受到该建议的影响（即便事物主体与该人物的权威性无关）。"
-        id="authority"
-        html={AuthorityCode.html}
-        css={AuthorityCode.css}
-      >
-        <AuthorityExample />
-      </ExampleWrapper>
-
-      <ExampleWrapper
-        title="得寸进尺法 Foot-in-the-Door Technique"
-        description="得寸进尺法又译登门槛效应，是一种通过先提出一个简单的小请求来说服用户同意一个较大请求的功效方法。"
-        id="foot-in-door"
-        html={FootInDoorCode.html}
-        css={FootInDoorCode.css}
-      >
-        <FootInDoorExample />
-      </ExampleWrapper>
-
+      <main>
+        {categories.map(category => (
+          <section key={category.id} id={category.id} className="mb-12 scroll-mt-20">
+            <h2 className="text-2xl font-bold mb-6 flex items-center">
+              {category.icon} {category.title}
+            </h2>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {category.components.map((component, index) => (
+                <ExampleWrapper
+                  key={index}
+                  title={component.title}
+                  description={component.description}
+                  id={component.id}
+                  html={component.html}
+                  css={component.css}
+                >
+                  {component.example}
+                </ExampleWrapper>
+              ))}
+            </div>
+          </section>
+        ))}
       </main>
 
       <footer className="mt-20 text-center py-6 border-t">

@@ -3,7 +3,7 @@ import React from 'react';
 export const AuthorityBad = () => {
   return (
     <div className="min-h-[250px] p-6 bg-white rounded-xl border border-gray-200">
-      <h2 className="text-xl font-bold mb-4">你会喜欢飞书</h2>
+      <h2 className="text-xl font-bold mb-4">你会喜欢XX</h2>
       <div className="space-y-2">
         <div className="h-4 bg-gray-100 rounded w-full"></div>
         <div className="h-4 bg-gray-100 rounded w-3/4"></div>
@@ -56,7 +56,7 @@ export const AuthorityExample = () => {
 export const AuthorityCode = {
   html: `<!-- Don't Example -->
 <div class="article">
-  <h2>你会喜欢飞书</h2>
+  <h2>你会喜欢XX</h2>
   <div class="content">
     <div class="line"></div>
     <div class="line"></div>

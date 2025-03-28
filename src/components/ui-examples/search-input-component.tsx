@@ -2,16 +2,17 @@ import React from 'react';
 
 export const SearchInputBad = () => {
   return (
-    <div className="min-h-[250px] flex flex-col justify-center p-6 bg-white rounded-xl border border-gray-200">
+    <div className="min-h-[250px] flex flex-col p-6 bg-white rounded-xl border border-gray-200">
+      <h2 className="text-xl font-bold mb-4">搜索</h2>
       <div className="relative">
-        <input
-          type="text"
-          placeholder="输入你的关键词"
-          className="w-full px-10 py-2 border rounded-lg"
-        />
-        <span className="absolute left-3 top-1/2 -translate-y-1/2">
-          🔍
-        </span>
+        <div className="flex items-center border border-gray-300 rounded-md px-3 py-2">
+          <span className="text-xl mr-2">🚲</span>
+          <input
+            type="text"
+            placeholder="输入你的关键词"
+            className="w-full outline-none"
+          />
+        </div>
       </div>
     </div>
   );
@@ -19,26 +20,17 @@ export const SearchInputBad = () => {
 
 export const SearchInputGood = () => {
   return (
-    <div className="min-h-[250px] flex flex-col justify-center p-6 bg-white rounded-xl border border-gray-200">
+    <div className="min-h-[250px] flex flex-col p-6 bg-white rounded-xl border border-gray-200">
+      <h2 className="text-xl font-bold mb-4">搜索</h2>
       <div className="relative">
-        <input
-          type="text"
-          placeholder="输入你的关键词"
-          className="w-full px-10 py-2 border rounded-lg"
-        />
-        <svg
-          className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4"
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
-        >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+        <div className="flex items-center border border-gray-300 rounded-md px-3 py-2">
+          <span className="text-xl mr-2">🔍</span>
+          <input
+            type="text"
+            placeholder="输入你的关键词"
+            className="w-full outline-none"
           />
-        </svg>
+        </div>
       </div>
     </div>
   );
@@ -65,47 +57,52 @@ export const SearchInputExample = () => {
 
 export const SearchInputCode = {
   html: `<!-- Don't Example -->
-<div class="search-container">
-  <input type="text" placeholder="输入你的关键词" />
-  <span class="search-icon">🔍</span>
+<div class="search">
+  <h2>搜索</h2>
+  <div class="search-input">
+    <span>🚲</span>
+    <input type="text" placeholder="输入你的关键词" />
+  </div>
 </div>
 
 <!-- Do Example -->
-<div class="search-container">
-  <input type="text" placeholder="输入你的关键词" />
-  <svg class="search-icon" viewBox="0 0 24 24">
-    <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-  </svg>
+<div class="search">
+  <h2>搜索</h2>
+  <div class="search-input">
+    <span>🔍</span>
+    <input type="text" placeholder="输入你的关键词" />
+  </div>
 </div>`,
-  css: `.search-container {
-  position: relative;
+  css: `.search {
   min-height: 250px;
-  display: flex;
-  align-items: center;
   padding: 1.5rem;
   background: white;
   border-radius: 0.75rem;
   border: 1px solid #e5e7eb;
 }
 
-input {
-  width: 100%;
-  padding: 0.5rem 2.5rem;
-  border: 1px solid #e5e7eb;
-  border-radius: 0.5rem;
+h2 {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
 }
 
-.search-icon {
-  position: absolute;
-  left: 0.75rem;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 1rem;
-  height: 1rem;
-  stroke: currentColor;
-  stroke-width: 2;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-  fill: none;
+.search-input {
+  display: flex;
+  align-items: center;
+  border: 1px solid #d1d5db;
+  border-radius: 0.375rem;
+  padding: 0.5rem 0.75rem;
+}
+
+span {
+  font-size: 1.25rem;
+  margin-right: 0.5rem;
+}
+
+input {
+  width: 100%;
+  outline: none;
+  border: none;
 }`
 };
