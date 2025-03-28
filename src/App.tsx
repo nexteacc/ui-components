@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Analytics } from '@vercel/analytics/react'; 
 import { ExampleWrapper } from './components/ui-examples/example-wrapper';
 import { PriceComponentExample, PriceComponentCode } from './components/ui-examples/price-component';
 import { ProductCardExample, ProductCardCode } from './components/ui-examples/product-card-component';
@@ -332,6 +333,7 @@ function App() {
           © {new Date().getFullYear()}
         </p>
       </footer>
+      <Analytics /> 
     </div>
   );
 }
